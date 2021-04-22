@@ -1,73 +1,14 @@
 <template>
-  <p>
-    <Bold>
-      Bold component with only default slot
-    </Bold>
-  </p>
-  <p>
-    <Italic>
-      Italic component with only default slot
-    </Italic>
-  </p>
-  <p>
-    <Bold>
-      <template #before>
-        --- Before slot ---
-      </template>
-      <template #default>
-        Default slot.
-      </template>
-      <template #after>
-        --- After slot ---
-      </template>
-    </Bold>
-  </p>
-  <p>
-    <Bold>
-      <Italic>
-        Combining both Bold and Italic
-      </Italic>
-    </Bold>
-  </p>
-  <Italic>
-    Italic inline before bold test
-  </Italic>
-  <Bold
-    display="block"
-    class="bold-test">
-    Testing with display: block; and width+height
-  </Bold>
-  <p>
-    Item:
-    <item-name :item="{ notation: ['IN'], prefLabel: { en: 'ItemName' } }" />
-  </p>
-  <p>
-    Item (no label):
-    <item-name
-      :item="{ notation: ['IN'], prefLabel: { en: 'ItemName' } }"
-      :show-label="false" />
-  </p>
-  <p>
-    Item (no notation):
-    <item-name
-      :item="{ notation: ['IN'], prefLabel: { en: 'ItemName' } }"
-      :show-notation="false" />
-  </p>
+  <div>
+    <user-status />
+  </div>
 </template>
 
 <script>
 import { defineComponent } from "vue"
-import Bold from "./components/bold/Bold.vue"
-import Italic from "./components/italic/Italic.vue"
-import ItemName from "./components/item-name"
 
 export default defineComponent({
   name: "App",
-  components: {
-    Bold,
-    Italic,
-    ItemName,
-  },
 })
 </script>
 
@@ -79,9 +20,5 @@ export default defineComponent({
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
-.bold-test {
-  background-color: lightblue;
-  height: 50px;
 }
 </style>

@@ -4,19 +4,15 @@
 [![NPM package name](https://img.shields.io/badge/npm-@stefandesu/vite--test--library-blue.svg)](https://www.npmjs.com/package/gbv-login-client-vue)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg)](https://github.com/RichardLitt/standard-readme)
 
-> Using [Vite](https://vitejs.dev) for creating Vue 3 component libraries.
+> Vue 3 wrapper for [login-client](https://github.com/gbv/login-client).
+
+**Note: Still in development!**
 
 ## Table of Contents <!-- omit in toc -->
-- [To-Dos for adjusting to your project](#to-dos-for-adjusting-to-your-project)
 - [Development](#development)
 - [Using the library](#using-the-library)
   - [Node](#node)
   - [Browser](#browser)
-- [Note about external dependencies](#note-about-external-dependencies)
-- [Notes about building a Vue 3 application with Vite](#notes-about-building-a-vue-3-application-with-vite)
-  - [Legacy browser support](#legacy-browser-support)
-  - [Base path](#base-path)
-  - [Defining environment variables](#defining-environment-variables)
 - [Publish](#publish)
 - [License](#license)
 

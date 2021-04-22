@@ -5,18 +5,21 @@ const path = require("path")
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  optimizeDeps: {
+    include: ["gbv-login-client"],
+  },
   build: {
     lib: {
       entry: path.resolve(__dirname, "src/index.js"),
-      name: "ViteTestLibrary",
+      name: "LoginClientVue",
     },
     rollupOptions: {
-      external: ["vue", "jskos-tools"],
+      external: ["vue", "gbv-login-client"],
       output: {
         exports: "named",
         globals: {
           vue: "Vue",
-          "jskos-tools": "jskos",
+          "gbv-login-client": "LoginClient",
         },
       },
     },
