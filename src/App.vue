@@ -54,6 +54,10 @@
       </p>
     </section>
     <user-status />
+    <hr>
+    <footer>
+      login-client-vue version {{ version }} ({{ branch }} - {{ commit }})
+    </footer>
   </main>
 </template>
 
@@ -76,6 +80,12 @@ export default defineComponent({
       ssl,
       name,
       login,
+      // eslint-disable-next-line no-undef
+      version: __PKG_VERSION__,
+      // eslint-disable-next-line no-undef
+      commit: __GIT_COMMIT__,
+      // eslint-disable-next-line no-undef
+      branch: __GIT_BRANCH__,
     }
   },
 })
