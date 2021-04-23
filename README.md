@@ -66,4 +66,4 @@ This will:
 After running this, GitHub Actions will **automatically publish the new version to npm**. It will also create a new GitHub Release draft. Please **edit and publish the release draft manually**.
 
 ## License
-MIT Copyright (c) 2021 Stefan です
+MIT Copyright (c) 2021 Verbundzentrale des GBV (VZG)
