@@ -55,10 +55,11 @@ import { defineComponent, ref, inject, reactive, watch } from "vue"
 export default defineComponent({
   name: "App",
   setup() {
-    const url = ref("")
+    const url = ref("localhost:3004")
     const ssl = ref(false)
     const name = ref("")
     const login = reactive(inject("login"))
+    login.connect(url.value, { ssl: ssl.value })
     watch(() => login.user, (user) => {
       name.value = (user && user.name) || ""
     })
