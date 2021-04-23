@@ -66,11 +66,16 @@ export function connect(url, options = {}) {
   })
 }
 
+export function disconnect() {
+  _client.value && _client.value.connected && _client.value.disconnect()
+}
+
 const login = {
   connected,
   user,
   loggedIn,
   connect,
+  disconnect,
   client,
   providers,
   about,
