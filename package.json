@@ -53,7 +53,7 @@
     "vite": "^2.1.5",
     "yesno": "^0.3.1"
   },
-  "author": "Stefan Peters <stefandesu@exo.pm> (https://exo.pm)",
+  "author": "Stefan Peters <stefan.peters@gbv.de>",
   "license": "MIT",
-  "description": "TODO"
+  "description": "Vue 3 wrapper for login-client"
 }
