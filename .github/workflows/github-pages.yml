@@ -27,3 +27,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           keep_files: true
+          destination_dir: ${{ github.ref != 'refs/heads/main' && 'dev' || '' }}
