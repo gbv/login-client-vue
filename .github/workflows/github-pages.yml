@@ -22,7 +22,7 @@ jobs:
       - name: Build
         run: BUILD_MODE=app npm run build -- --base=/login-client-vue/$BRANCH
         env:
-          BRANCH: ${{ github.ref != 'refs/heads/main' && 'dev' || '' }}
+          BRANCH: ${{ github.ref != 'refs/heads/main' && 'dev/' || '' }}
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
