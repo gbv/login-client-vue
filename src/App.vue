@@ -37,6 +37,14 @@
           <button @click="login.setName(name)">
             Set name
           </button><br>
+          <button @click="login.openLogoutWindow()">
+            Logout
+          </button><br>
+        </span>
+        <span v-else>
+          <button @click="login.openLoginWindow()">
+            Login
+          </button><br>
         </span>
         <span v-if="login.connected">
           <button @click="login.disconnect()">

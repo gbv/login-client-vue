@@ -32,6 +32,7 @@ export function connect(url, options = {}) {
   _client.value.connect()
   // Add event listeners
   _client.value.addEventListener(null, event => {
+    closeWindow(event.type)
     switch (event.type) {
       case events.connect:
         _connected.value = true
@@ -70,6 +71,38 @@ export function disconnect() {
   _client.value && _client.value.connected && _client.value.disconnect()
 }
 
+const windowManager = {
+  window: null,
+  eventType: null,
+}
+
+export function openLoginWindow(providerId) {
+  if (!client.value || !client.value.connected) return
+  const provider = providers.value.find(({ id }) => providerId === id)
+  const url = (provider && provider.loginURL) || (about.value && about.value.baseUrl + "login/")
+  if (url) {
+    windowManager.window = window.open(url)
+    windowManager.eventType = events.login
+  }
+}
+export function openLogoutWindow() {
+  if (!client.value || !client.value.connected) return
+  const url = (about.value && about.value.baseUrl + "logout/")
+  if (url) {
+    windowManager.window = window.open(url)
+    windowManager.eventType = events.logout
+  }
+}
+
+function closeWindow(eventType) {
+  if (windowManager.window && windowManager.eventType == eventType) {
+    setTimeout(() => {
+      windowManager.window && windowManager.window.close()
+      windowManager.window = null
+    }, 100)
+  }
+}
+
 const login = {
   connected,
   user,
@@ -83,6 +116,8 @@ const login = {
   events,
   errors,
   setName,
+  openLoginWindow,
+  openLogoutWindow,
 }
 
 import UserStatus from "./components/user-status"
