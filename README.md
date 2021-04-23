@@ -22,7 +22,9 @@ git clone https://github.com/gbv/login-client-vue.git
 cd login-client-vue
 npm install
 npm run dev # for Vite dev server
-npm run build # for Vite build
+npm run build # for Vite library build
+BUILD_MODE=app npm run build # for Vite app build
+BUILD_MODE=app npm run build -- --base=/base/ # for Vite app build with different base
 ```
 
 ## Using the library

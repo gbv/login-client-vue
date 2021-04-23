@@ -2,13 +2,9 @@ import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
 const path = require("path")
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [vue()],
-  optimizeDeps: {
-    include: ["gbv-login-client"],
-  },
-  build: {
+let build
+if (process.env.BUILD_MODE !== "app") {
+  build = {
     lib: {
       entry: path.resolve(__dirname, "src/index.js"),
       name: "LoginClientVue",
@@ -23,5 +19,14 @@ export default defineConfig({
         },
       },
     },
+  }
+}
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [vue()],
+  optimizeDeps: {
+    include: ["gbv-login-client"],
   },
+  build,
 })
