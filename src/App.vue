@@ -1,4 +1,8 @@
 <template>
+  <nav>
+    <user-status style="float: right;" />
+    <div style="clear: both;" />
+  </nav>
   <main>
     <h1>
       login-client-vue
@@ -53,7 +57,6 @@
         </span>
       </p>
     </section>
-    <user-status />
     <hr>
     <footer>
       login-client-vue version {{ version }} ({{ branch }} - {{ commit }})
@@ -98,6 +101,5 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
