@@ -2,12 +2,21 @@
   <div class="user-status">
     <a
       href=""
+      :class="{
+        'user-status-disconnected': !login.connected,
+      }"
       @click.prevent="login.loggedIn ? login.openBaseWindow() : login.openLoginWindow()">
       {{ login.loggedIn ? login.user.name : "Sign in" }}
       <span class="carret-down">&#9660;</span>
     </a>
     <div class="user-status-dropdown">
-      <template v-if="login.loggedIn">
+      <template v-if="!login.connected">
+        <p>
+          <!-- TODO: Improve error. -->
+          Error: Could not connect to Login Server.
+        </p>
+      </template>
+      <template v-else-if="login.loggedIn">
         <p>
           Signed in as {{ login.user.name }}.
         </p>
@@ -69,6 +78,11 @@ export default defineComponent({
   color: #333;
   font-weight: bold;
   text-decoration: none;
+}
+.user-status > a.user-status-disconnected {
+  font-weight: normal;
+  text-decoration: line-through;
+  cursor: default;
 }
 .user-status > a, .user-status .user-status-dropdown li > a {
   display: block;
