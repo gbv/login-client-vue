@@ -76,6 +76,14 @@ const windowManager = {
   eventType: null,
 }
 
+export function openBaseWindow() {
+  if (!client.value || !client.value.connected) return
+  const url = about.value && about.value.baseUrl
+  if (url) {
+    window.open(url)
+  }
+}
+
 export function openLoginWindow(providerId) {
   if (!client.value || !client.value.connected) return
   const provider = providers.value.find(({ id }) => providerId === id)
@@ -118,6 +126,7 @@ const login = {
   setName,
   openLoginWindow,
   openLogoutWindow,
+  openBaseWindow,
 }
 
 import UserStatus from "./components/user-status"
