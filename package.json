@@ -37,7 +37,7 @@
     "test"
   ],
   "dependencies": {
-    "gbv-login-client": "^0.2.15",
+    "gbv-login-client": "^0.3.0",
     "vue": "^3.0.5"
   },
   "devDependencies": {
