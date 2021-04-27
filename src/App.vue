@@ -1,7 +1,6 @@
 <template>
   <nav>
     <user-status
-      :redirect="true"
       style="float: right;" />
     <div style="clear: both;" />
   </nav>
