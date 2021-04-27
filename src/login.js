@@ -84,21 +84,29 @@ export function openBaseWindow() {
   }
 }
 
-export function openLoginWindow(providerId) {
+export function openLoginWindow({ id: providerId, redirect = false } = {}) {
   if (!client.value || !client.value.connected) return
   const provider = providers.value.find(({ id }) => providerId === id)
   const url = (provider && provider.loginURL) || (about.value && about.value.baseUrl + "login/")
   if (url) {
-    windowManager.window = window.open(url)
-    windowManager.eventType = events.login
+    if (redirect) {
+      window.location.href = `${url}?redirect_uri=${window.location.href}`
+    } else {
+      windowManager.window = window.open(url)
+      windowManager.eventType = events.login
+    }
   }
 }
-export function openLogoutWindow() {
+export function openLogoutWindow({ redirect = false } = {}) {
   if (!client.value || !client.value.connected) return
   const url = (about.value && about.value.baseUrl + "logout/")
   if (url) {
-    windowManager.window = window.open(url)
-    windowManager.eventType = events.logout
+    if (redirect) {
+      window.location.href = `${url}?redirect_uri=${window.location.href}`
+    } else {
+      windowManager.window = window.open(url)
+      windowManager.eventType = events.logout
+    }
   }
 }
 

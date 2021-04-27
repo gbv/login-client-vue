@@ -5,7 +5,7 @@
       :class="{
         'user-status-disconnected': !login.connected,
       }"
-      @click.prevent="login.loggedIn ? login.openBaseWindow() : login.openLoginWindow()">
+      @click.prevent="login.loggedIn ? login.openBaseWindow() : login.openLoginWindow({ redirect })">
       {{ login.loggedIn ? login.user.name : "Sign in" }}
       <span class="carret-down">&#9660;</span>
     </a>
@@ -41,7 +41,7 @@
             :key="provider.id">
             <a
               href=""
-              @click.prevent="login.openLoginWindow(provider.id)">
+              @click.prevent="login.openLoginWindow({ id: provider.id, redirect })">
               <img
                 v-if="provider.image"
                 :src="provider.image">
@@ -60,6 +60,12 @@ import login from "../../login.js"
 
 export default defineComponent({
   name: "UserStatus",
+  props: {
+    redirect: {
+      type: Boolean,
+      default: false,
+    },
+  },
   setup() {
     return {
       login: reactive(login),
