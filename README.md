@@ -36,7 +36,62 @@ BUILD_MODE=app npm run build -- --base=/base/ # for Vite app build with differen
 npm install gbv-login-client-vue
 ```
 
-TODO
+2a. Add all components globally (in `src/main.js` for your project):
+```js
+import { createApp } from 'vue'
+import App from './App.vue'
+
+const app = createApp(App)
+
+import * as LoginClientVue from "gbv-login-client-vue"
+app.use(LoginClientVue)
+
+app.mount('#app')
+```
+
+2b. Add individual components globally (tree-shakable):
+```js
+import { createApp } from 'vue'
+import App from './App.vue'
+
+const app = createApp(App)
+
+import { UserStatus, Login } from "gbv-login-client-vue"
+app.use(UserStatus)
+app.use(Login)
+
+app.mount('#app')
+```
+
+2c. Add individual components where needed (e.g. in some SFC, tree-shakable):
+```js
+import { defineComponent } from "vue"
+import { UserStatus } from "gbv-login-client-vue"
+
+export default defineComponent({
+  // ...
+  components: {
+    UserStatus,
+  },
+  // ...
+})
+```
+
+3\. Use `inject` to get access to the Login plugin:
+```js
+import { defineComponent, inject, reactive } from "vue"
+
+export default defineComponent({
+  // ...
+  setup() {
+    // Option 1: Import the whole plugin with all properties
+    const login = reactive(inject("login"))
+    // Option 2: Deconstruct particular properties (will be readonly refs)
+    const { connected, user } = inject("login")
+    // ...
+  },
+})
+```
 
 ### Browser
 The library can be used in the browser, for example via jsDelivr.
