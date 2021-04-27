@@ -55,12 +55,12 @@
 </template>
 
 <script>
-import { defineComponent, inject, reactive } from "vue"
+import { defineComponent, reactive } from "vue"
+import login from "../../login.js"
 
 export default defineComponent({
   name: "UserStatus",
   setup() {
-    const login = inject("login")
     return {
       login: reactive(login),
     }
