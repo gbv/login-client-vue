@@ -27,7 +27,7 @@ export function setName(name) {
 }
 
 export function connect(url, options = {}) {
-  _client.value && _client.value.connected && _client.value.disconnect()
+  _client.value && _client.value.disconnect()
   _client.value = new LoginClient(url, options)
   _client.value.connect()
   // Add event listeners
@@ -78,16 +78,18 @@ const windowManager = {
 
 export function openBaseWindow() {
   if (!client.value || !client.value.connected) return
-  const url = about.value && about.value.baseUrl
+  const about = client.value._about
+  const url = about && about.baseUrl
   if (url) {
     window.open(url)
   }
 }
 
 export function openLoginWindow({ id: providerId, redirect = false } = {}) {
-  if (!client.value || !client.value.connected) return
+  if (!client.value) return
+  const about = client.value._about
   const provider = providers.value.find(({ id }) => providerId === id)
-  const url = (provider && provider.loginURL) || (about.value && about.value.baseUrl + "login/")
+  const url = (provider && provider.loginURL) || (about && about.baseUrl + "login/")
   if (url) {
     if (redirect) {
       window.location.href = `${url}?redirect_uri=${window.location.href}`
@@ -99,7 +101,8 @@ export function openLoginWindow({ id: providerId, redirect = false } = {}) {
 }
 export function openLogoutWindow({ redirect = false } = {}) {
   if (!client.value || !client.value.connected) return
-  const url = (about.value && about.value.baseUrl + "logout/")
+  const about = client.value._about
+  const url = (about && about.baseUrl + "logout/")
   if (url) {
     if (redirect) {
       window.location.href = `${url}?redirect_uri=${window.location.href}`
