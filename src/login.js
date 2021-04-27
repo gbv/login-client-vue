@@ -92,7 +92,7 @@ export function openLoginWindow({ id: providerId, redirect = false } = {}) {
   const url = (provider && provider.loginURL) || (about && about.baseUrl + "login/")
   if (url) {
     if (redirect) {
-      window.location.href = `${url}?redirect_uri=${window.location.href}`
+      window.location.href = `${url}?redirect_uri=${encodeURIComponent(window.location.href)}`
     } else {
       windowManager.window = window.open(url)
       windowManager.eventType = events.login
@@ -105,7 +105,7 @@ export function openLogoutWindow({ redirect = false } = {}) {
   const url = (about && about.baseUrl + "logout/")
   if (url) {
     if (redirect) {
-      window.location.href = `${url}?redirect_uri=${window.location.href}`
+      window.location.href = `${url}?redirect_uri=${encodeURIComponent(window.location.href)}`
     } else {
       windowManager.window = window.open(url)
       windowManager.eventType = events.logout
