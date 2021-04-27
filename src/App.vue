@@ -1,6 +1,8 @@
 <template>
   <nav>
-    <user-status style="float: right;" />
+    <user-status
+      :redirect="true"
+      style="float: right;" />
     <div style="clear: both;" />
   </nav>
   <main>
@@ -22,7 +24,7 @@
           type="checkbox">
         <label for="sslCheckbox">SSL</label>
         <br>
-        <button @click="login.connect(url, { ssl })">
+        <button @click="connect">
           Connect
         </button>
       </p>
@@ -70,8 +72,10 @@ import { defineComponent, ref, inject, reactive, watch } from "vue"
 export default defineComponent({
   name: "App",
   setup() {
-    const url = ref("localhost:3004")
-    const ssl = ref(false)
+    // Get url and ssl from URL params
+    const urlParams = new URLSearchParams(window.location.search)
+    const url = ref(urlParams.get("server") || "coli-conc.gbv.de/login/")
+    const ssl = ref(urlParams.has("ssl") ? urlParams.get("ssl") === "true" : true)
     const name = ref("")
     const login = reactive(inject("login"))
     login.connect(url.value, { ssl: ssl.value })
@@ -89,6 +93,14 @@ export default defineComponent({
       commit: __GIT_COMMIT__,
       // eslint-disable-next-line no-undef
       branch: __GIT_BRANCH__,
+      connect() {
+        login.connect(url.value, { ssl: ssl.value })
+        // Set URL params
+        const urlParams = new URLSearchParams(window.location.search)
+        urlParams.set("server", url.value)
+        urlParams.set("ssl", ssl.value)
+        window.history.replaceState({}, "", `${window.location.href.replace(window.location.search, "")}?${urlParams.toString()}`)
+      },
     }
   },
 })
