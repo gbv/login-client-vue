@@ -5,14 +5,13 @@
       :class="{
         'user-status-disconnected': !login.connected,
       }"
-      @click.prevent="login.loggedIn ? login.openBaseWindow() : login.openLoginWindow({ redirect })">
+      @click.prevent="login.connected && (login.loggedIn ? login.openBaseWindow() : login.openLoginWindow({ redirect }))">
       {{ login.loggedIn ? login.user.name : "Sign in" }}
       <span class="carret-down">&#9660;</span>
     </a>
     <div class="user-status-dropdown">
       <template v-if="!login.connected">
         <p>
-          <!-- TODO: Improve error. -->
           Error:
           <template v-if="login.lastError instanceof login.errors.NoInternetConnectionError">
             Please check your internet connection.
@@ -132,7 +131,7 @@ export default defineComponent({
   display: none;
   position: absolute;
   top: 100%;
-  width: 150px;
+  width: 200px;
   background: #fff;
   border: 1px solid #00000022;
   border-radius: 5px;
