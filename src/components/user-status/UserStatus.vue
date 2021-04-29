@@ -62,6 +62,21 @@
           </li>
         </ul>
       </template>
+      <template v-if="login.client && login.client.about && login.client.about.baseUrl">
+        <hr>
+        <ul>
+          <li style="overflow-wrap: break-word;">
+            <a
+              href=""
+              @click.prevent="login.openBaseWindow()">
+              Open Login Server
+              <small style="font-weight: normal;">
+                <br>at {{ login.client.about.baseUrl }}
+              </small>
+            </a>
+          </li>
+        </ul>
+      </template>
     </div>
   </div>
 </template>
