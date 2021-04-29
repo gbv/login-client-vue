@@ -114,6 +114,7 @@ This will:
 - Run tests and build to make sure everything works
 - Make sure `dev` is up-to-date
 - Run `npm version patch` (or "minor"/"major")
+- **Ask you to confirm the version**
 - Push changes to `dev`
 - Switch to `main`
 - Merge changes from `dev`
