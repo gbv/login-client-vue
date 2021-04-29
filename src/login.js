@@ -20,6 +20,9 @@ const _token = ref(null)
 export const token = readonly(_token)
 let tokenExpiredTimeoutID
 
+const _lastError = ref(null)
+export const lastError = readonly(_lastError)
+
 export const events = LoginClient.events
 export const errors = LoginClient.errors
 export function setName(name) {
@@ -62,6 +65,9 @@ export function connect(url, options = {}) {
         tokenExpiredTimeoutID = setTimeout(() => {
           _token.value = null
         }, event.expiresIn * 1000)
+        break
+      case events.error:
+        _lastError.value = event.error
         break
     }
   })
@@ -138,6 +144,7 @@ const login = {
   openLoginWindow,
   openLogoutWindow,
   openBaseWindow,
+  lastError,
 }
 
 export default {

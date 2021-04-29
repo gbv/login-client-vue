@@ -13,7 +13,19 @@
       <template v-if="!login.connected">
         <p>
           <!-- TODO: Improve error. -->
-          Error: Could not connect to Login Server.
+          Error:
+          <template v-if="login.lastError instanceof login.errors.NoInternetConnectionError">
+            Please check your internet connection.
+          </template>
+          <template v-else-if="login.lastError instanceof login.errors.ThirdPartyCookiesBlockedError">
+            Third-party cookies are blocked in your browser which means that a connection to the server can't be established.
+          </template>
+          <template v-else-if="login.lastError instanceof login.errors.ServerConnectionError">
+            There seems to be an issue with the server. Please try again later.
+          </template>
+          <template v-else>
+            Unknown error. Please try again later.
+          </template>
         </p>
       </template>
       <template v-else-if="login.loggedIn">
