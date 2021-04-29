@@ -2,13 +2,23 @@ import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
 const path = require("path")
 const pkg = require("./package.json")
+
+// Get short Git commit hash
 const commit = require("child_process")
   .execSync("git rev-parse --short HEAD")
   .toString().trim()
+// Get Git branch name
 const branch = require("child_process")
   .execSync("git rev-parse --abbrev-ref HEAD")
   .toString().trim()
 
+/**
+ * Allow two different builds:
+ * - `npm run build` builds the library
+ * - `BUILD_MODE=app npm run build` builds the app (App.vue)
+ *
+ * Note that the destination folder `dist` will be emptied before each build.
+ */
 let build
 if (process.env.BUILD_MODE !== "app") {
   build = {
@@ -36,6 +46,7 @@ export default defineConfig({
     include: ["gbv-login-client"],
   },
   build,
+  // These values can be used anywhere and will be replaced by Vite with the respective values:
   define: {
     __PKG_VERSION__: `"${pkg.version}"`,
     __GIT_COMMIT__: `"${commit}"`,
