@@ -10,6 +10,7 @@
 
 ## Table of Contents <!-- omit in toc -->
 - [Development](#development)
+  - [Build](#build)
 - [Using the library](#using-the-library)
   - [Node](#node)
   - [Browser](#browser)
@@ -22,6 +23,16 @@ git clone https://github.com/gbv/login-client-vue.git
 cd login-client-vue
 npm install
 npm run dev # for Vite dev server
+```
+
+The dev server should then be running on http://localhost:3000. However, check the console output to see the actual port since it will increment it if it's not available.
+
+Ideally, you should have an instance of [Login Server](https://github.com/gbv/login-server) running on `localhost:3004`. The example served by the dev server will automatically use this instance.
+
+### Build
+All builds will used the destination folder `dist`. Note that the folder will be emptied before each build.
+
+```bash
 npm run build # for Vite library build
 BUILD_MODE=app npm run build # for Vite app build
 BUILD_MODE=app npm run build -- --base=/base/ # for Vite app build with different base
