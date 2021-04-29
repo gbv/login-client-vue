@@ -68,13 +68,18 @@
 <script>
 import { defineComponent, ref, inject, reactive, watch } from "vue"
 
+const defaults = {
+  url: import.meta.env.DEV ? "localhost:3004/" : "coli-conc.gbv.de/login/",
+  ssl: import.meta.env.DEV ? false : true,
+}
+
 export default defineComponent({
   name: "App",
   setup() {
     // Get url and ssl from URL params
     const urlParams = new URLSearchParams(window.location.search)
-    const url = ref(urlParams.get("server") || "coli-conc.gbv.de/login/")
-    const ssl = ref(urlParams.has("ssl") ? urlParams.get("ssl") === "true" : true)
+    const url = ref(urlParams.get("server") || defaults.url)
+    const ssl = ref(urlParams.has("ssl") ? urlParams.get("ssl") === "true" : defaults.ssl)
     const name = ref("")
     const login = reactive(inject("login"))
     login.connect(url.value, { ssl: ssl.value })
