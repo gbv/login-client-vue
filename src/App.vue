@@ -60,7 +60,10 @@
     </section>
     <hr>
     <footer>
-      login-client-vue version {{ version }} ({{ branch }} - {{ commit }})
+      login-client-vue v{{ version }} ({{ branch }} - {{ commit }})<br>
+      <a href="https://github.com/gbv/login-client-vue">
+        Documentation on GitHub
+      </a>
     </footer>
   </main>
 </template>
