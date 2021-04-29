@@ -1,7 +1,7 @@
 # login-client-vue
 [![Test and build](https://github.com/gbv/login-client-vue/actions/workflows/test-and-build.yml/badge.svg)](https://github.com/gbv/login-client-vue/actions/workflows/test-and-build.yml)
 [![GitHub package version](https://img.shields.io/github/package-json/v/gbv/login-client-vue.svg?label=version)](https://github.com/gbv/login-client-vue)
-[![NPM package name](https://img.shields.io/badge/npm-@stefandesu/vite--test--library-blue.svg)](https://www.npmjs.com/package/gbv-login-client-vue)
+[![NPM package name](https://img.shields.io/badge/npm-gbv--login--client--vue-blue.svg)](https://www.npmjs.com/package/gbv-login-client-vue)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg)](https://github.com/RichardLitt/standard-readme)
 
 > Vue 3 wrapper for [login-client](https://github.com/gbv/login-client).
