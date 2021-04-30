@@ -15,7 +15,6 @@
   - [Adding it to your project](#adding-it-to-your-project)
   - [Login Plugin](#login-plugin)
   - [UserStatus Component](#userstatus-component)
-  - [Fully working HTML example](#fully-working-html-example)
 - [Publish](#publish)
 - [License](#license)
 
@@ -43,7 +42,7 @@ BUILD_MODE=app npm run build -- --base=/base/ # for Vite app build with differen
 ## Usage
 
 ### Adding it to your project
-The library can be used in the browser, for example via jsDelivr: [![](https://data.jsdelivr.com/v1/package/npm/gbv-login-client-vue/badge?style=rounded)](https://www.jsdelivr.com/package/npm/gbv-login-client-vue) Note that it requires Vue 3 and login-client to be included as well. Please refer to the full HTML example [below](#fully-working-html-example).
+The library can be used in the browser, for example via jsDelivr: [![](https://data.jsdelivr.com/v1/package/npm/gbv-login-client-vue/badge?style=rounded)](https://www.jsdelivr.com/package/npm/gbv-login-client-vue) Note that it requires Vue 3 and login-client to be included as well. Please refer to the full HTML example [here](example.html).
 
 If you are using it via Node (the preferred method), first install it via npm:
 
@@ -76,7 +75,7 @@ app.mount('#app')
 ```
 
 ### Login Plugin
-[Source](https://github.com/gbv/login-client-vue/blob/main/src/login.js)
+[Source](src/login.js)
 
 The `Login` plugin provides an object to interact with a Login Server instance as well as some properties for the current status of the connection. All properties in the exported object are either reactive, read-only Vue variables or methods to interact with the server.
 
@@ -147,7 +146,7 @@ Login.connect("localhost:3004", { ssl: false })
 For a more extensive example, you can also refer to [this project's App.vue](https://github.com/gbv/login-client-vue/blob/main/src/App.vue).
 
 ### UserStatus Component
-[Source](https://github.com/gbv/login-client-vue/blob/main/src/components/user-status/UserStatus.vue)
+[Source](src/components/user-status/UserStatus.vue)
 
 The `UserStatus` component provides a simple way of adding a login button to an application. It offers a sign in, either in a separate window or in the same window with a redirect back to the application, as well as some status information in a dropdown.
 
@@ -171,9 +170,6 @@ export default defineComponent({
   // ...
 })
 ```
-
-### Fully working HTML example
-TODO
 
 ## Publish
 Please work on the `dev` branch during development (or better yet, develop in a feature branch and merge into `dev` when ready).
