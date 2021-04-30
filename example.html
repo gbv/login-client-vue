@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login-client-vue example</title>
+    <!-- Vue 3 production build -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+    <!-- Login Client -->
+    <script src="https://cdn.jsdelivr.net/npm/gbv-login-client@0.3.1/dist/login-client.min.js"></script>
+    <!-- login-client-vue (adjust version if necessary) -->
+    <script src="https://cdn.jsdelivr.net/npm/gbv-login-client-vue@0.1.0/dist/gbv-login-client-vue.umd.min.js"></script>
+    <!-- Styles for login-client-vue (adjust version if necessary) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gbv-login-client-vue@0.1.0/dist/style.css">
+    <style>
+      #app {
+        font-family: Avenir, Helvetica, Arial, sans-serif;
+        max-width: 500px;
+        margin: 10px auto;
+      }
+      .clearer {
+        clear: both;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <user-status style="float: right;"></user-status>
+      <div class="clearer"></div>
+      <p>
+        Try signing in/out at the top-right of the page.
+      </p>
+      <ul>
+        <li>
+          Connected: {{ login.connected }}
+        </li>
+        <li>
+          Logged in: {{ login.loggedIn }}
+        </li>
+        <li>
+          User: {{ login.user && login.user.name }} ({{ login.user && login.user.uri }})
+        </li>
+      </ul>
+    </div>
+    <script>
+      // Here, we are creating an empty Vue app and include the library as a plugin.
+      Vue.createApp({
+        data() {
+          return {
+            login: Vue.reactive(LoginClientVue.Login),
+          }
+        },
+        // TODO: Make it so that this works as well:
+        // inject: ["login"],
+      }).use(LoginClientVue).mount("#app")
+      // Connect to local Login Server instance
+      LoginClientVue.Login.connect("localhost:3004", { ssl: false })
+    </script>
+  </body>
+</html>
