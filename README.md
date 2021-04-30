@@ -80,33 +80,41 @@ app.mount('#app')
 The `Login` plugin provides an object to interact with a Login Server instance as well as some properties for the current status of the connection. All properties in the exported object are either reactive, read-only Vue variables or methods to interact with the server.
 
 There are two ways to access this object:
-1. Add it globally (see above) and then use `inject` to access it:
+
+1. Add it globally (see above) and then use `inject` to access it (recommended):
     ```js
-    import { defineComponent, inject, reactive } from "vue"
+    import { defineComponent, inject } from "vue"
 
     export default defineComponent({
       // ...
       setup() {
-        // Option 1: Import the whole plugin with all properties
-        const login = reactive(inject("login"))
-        // Option 2: Deconstruct particular properties (will be read-only refs)
-        const { connected, user } = inject("login")
+        // Option 1: Import the whole plugin with all properties as a reactive object
+        const login = inject("login")
+        // Option 2: Deconstruct particular properties
+        // Note: If you are using these within the setup method, you need to use the `.value`
+        // notation for reactive values (e.g. `connected.value`, etc.).
+        // See below for which values are reactive.
+        const { connected, user } = inject("login-refs")
         // ...
       },
     })
     ```
+    If you are not using the new Composition API, then you can also used `inject: ["login"]` and access it via `login` in the template.
+
 2. Import it directly in the component:
     ```js
-    import { defineComponent, reactive } from "vue"
+    import { defineComponent, toRefs } from "vue"
     import { Login } from "gbv-login-client-vue"
 
     export default defineComponent({
       // ...
       setup() {
         // Option 1: Import the whole plugin with all properties
-        const login = reactive(Login)
+        const login = Login
         // Option 2: Deconstruct particular properties (will be read-only refs)
-        const { connected, user } = login
+        // Note that in this case, ALL properties will be refs, i.e. have to be accessed using
+        // the `.value` notation when used within the setup method.
+        const { connected, user } = toRefs(login)
         // ...
       },
     })
@@ -114,20 +122,24 @@ There are two ways to access this object:
 
 Note that if you are not including individual properties, wrapping the object in `reactive` is recommended because you will be able to access the properties directly, both in the code and in the template.
 
-The following properties are provided:
+The following reactive properties are provided:
 - `connected` - boolean whether the login server is connected
 - `loggedIn` - boolean whether the user is logged in
 - `user` - user object if logged in (`null` otherwise)
 - `providers` - a list of providers available at the Login Server
 - `about` - object with information about the Login Server
 - `token` - the latest JWT that can be used to authenticate requests
+- `lastError` - an error object of the last error (`null` if there has been no error)
+- `client` - direct access to the [login-client](https://github.com/gbv/login-client) instance (usually not needed)
+
+The following non-reactive properties are provided:
 - `errors` - a list of error types
   - `errors.NoInternetConnectionError`
   - `errors.ThirdPartyCookiesBlockedError`
   - `errors.ServerConnectionError`
-- `lastError` - an error object of the last error (`null` if there has been no error)
 - `events` - a list of possible events (usually not needed)
-- `client` - direct access to the [login-client](https://github.com/gbv/login-client) instance (usually not needed)
+
+The following methods are provided:
 - `connect(url, options)` - connect to a Login Server; for options, refer to the [login-client documentation](https://github.com/gbv/login-client) (LoginClient constructor)
 - `disconnect()` - disconnects from the Login Server; usually not needed since `connect` will first disconnect before establishing the new connection
 - `setName(name)` - updates the user's name at the Login Server

@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, inject, reactive, watch } from "vue"
+import { defineComponent, ref, inject, watch } from "vue"
 
 const defaults = {
   url: import.meta.env.DEV ? "localhost:3004/" : "coli-conc.gbv.de/login/",
@@ -84,7 +84,7 @@ export default defineComponent({
     const url = ref(urlParams.get("server") || defaults.url)
     const ssl = ref(urlParams.has("ssl") ? urlParams.get("ssl") === "true" : defaults.ssl)
     const name = ref("")
-    const login = reactive(inject("login"))
+    const login = inject("login")
     login.connect(url.value, { ssl: ssl.value })
     watch(() => login.user, (user) => {
       name.value = (user && user.name) || ""

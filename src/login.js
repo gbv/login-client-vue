@@ -1,4 +1,4 @@
-import { ref, computed, readonly } from "vue"
+import { ref, computed, readonly, reactive } from "vue"
 import LoginClient from "gbv-login-client"
 
 const _connected = ref(false)
@@ -147,12 +147,13 @@ const login = {
   lastError,
 }
 
-export default {
-  install: (app, { url, ...options } = {}) => {
-    if (url) {
-      connect(url, options)
-    }
-    app.provide("login", login)
-  },
-  ...login,
+const loginExported = reactive(login)
+loginExported.install = (app, { url, ...options } = {}) => {
+  if (url) {
+    connect(url, options)
+  }
+  app.provide("login", readonly(login))
+  app.provide("login-refs", login)
 }
+
+export default loginExported

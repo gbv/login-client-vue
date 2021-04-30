@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive } from "vue"
+import { defineComponent } from "vue"
 import login from "../../login.js"
 
 export default defineComponent({
@@ -94,7 +94,7 @@ export default defineComponent({
   },
   setup() {
     return {
-      login: reactive(login),
+      login,
     }
   },
 })

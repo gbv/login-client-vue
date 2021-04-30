@@ -45,13 +45,8 @@
     <script>
       // Here, we are creating an empty Vue app and include the library as a plugin.
       Vue.createApp({
-        data() {
-          return {
-            login: Vue.reactive(LoginClientVue.Login),
-          }
-        },
-        // TODO: Make it so that this works as well:
-        // inject: ["login"],
+        // This allows us to use "login" inside the template (see above).
+        inject: ["login"],
       }).use(LoginClientVue).mount("#app")
       // Connect to local Login Server instance
       LoginClientVue.Login.connect("localhost:3004", { ssl: false })
