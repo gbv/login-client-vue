@@ -1,5 +1,5 @@
-import Login from "./login"
-import UserStatus from "./components/user-status"
+import Login from "./login.js"
+import UserStatus from "./components/user-status/index.js"
 
 function install(app, options) {
   app.use(Login, options)

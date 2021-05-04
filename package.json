@@ -5,8 +5,6 @@
     "dist",
     "src"
   ],
-  "main": "./dist/gbv-login-client-vue.umd.js",
-  "module": "./dist/gbv-login-client-vue.es.js",
   "exports": {
     ".": "./src/index.js",
     "./login": "./src/login.js",
