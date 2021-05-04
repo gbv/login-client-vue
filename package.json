@@ -8,10 +8,9 @@
   "main": "./dist/gbv-login-client-vue.umd.js",
   "module": "./dist/gbv-login-client-vue.es.js",
   "exports": {
-    ".": {
-      "import": "./src/index.js",
-      "require": "./dist/gbv-login-client-vue.umd.js"
-    }
+    ".": "./src/index.js",
+    "./login": "./src/login.js",
+    "./user-status": "./src/components/user-status/index.js"
   },
   "sideEffects": false,
   "scripts": {
@@ -55,5 +54,8 @@
   },
   "author": "Stefan Peters <stefan.peters@gbv.de>",
   "license": "MIT",
-  "description": "Vue 3 wrapper for login-client"
+  "description": "Vue 3 wrapper for login-client",
+  "engines": {
+    "node": ">=12.17.0"
+  }
 }
