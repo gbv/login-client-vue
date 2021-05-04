@@ -81,8 +81,7 @@
 </template>
 
 <script>
-import { defineComponent } from "vue"
-import login from "../../login.js"
+import { defineComponent, inject } from "vue"
 
 export default defineComponent({
   name: "UserStatus",
@@ -94,7 +93,7 @@ export default defineComponent({
   },
   setup() {
     return {
-      login,
+      login: inject("login"),
     }
   },
 })

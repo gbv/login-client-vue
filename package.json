@@ -5,6 +5,7 @@
     "dist",
     "src"
   ],
+  "main": "./src/index.js",
   "exports": {
     ".": "./src/index.js",
     "./login": "./src/login.js",
