@@ -10,6 +10,13 @@
       <span class="carret-down">&#9660;</span>
     </a>
     <div class="user-status-dropdown">
+      <!-- Slot before -->
+      <slot
+        name="before"
+        :connected="login.connected"
+        :loggedIn="login.loggedIn"
+        :user="login.user" />
+      <!-- login-client menu items -->
       <template v-if="!login.connected">
         <p>
           Error:
@@ -76,6 +83,12 @@
           </li>
         </ul>
       </template>
+      <!-- Slot after -->
+      <slot
+        name="after"
+        :connected="login.connected"
+        :loggedIn="login.loggedIn"
+        :user="login.user" />
     </div>
   </div>
 </template>
@@ -99,7 +112,7 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
+<style>
 .user-status {
   position: relative;
   display: inline-block;

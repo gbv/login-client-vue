@@ -1,7 +1,26 @@
 <template>
   <nav>
     <user-status
-      style="float: right;" />
+      style="float: right;">
+      <template #before="{ connected, loggedIn, user }">
+        <p>
+          Slot before:<br>
+          Connected: {{ connected }}<br>
+          Logged in: {{ loggedIn }}<br>
+          User: {{ user ? "Object" : "null" }}
+        </p>
+        <hr>
+      </template>
+      <template #after="{ connected, loggedIn, user }">
+        <hr>
+        <p>
+          Slot after:<br>
+          Connected: {{ connected }}<br>
+          Logged in: {{ loggedIn }}<br>
+          User: {{ user ? "Object" : "null" }}
+        </p>
+      </template>
+    </user-status>
     <div style="clear: both;" />
   </nav>
   <main>
