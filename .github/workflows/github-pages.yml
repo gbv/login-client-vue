@@ -24,7 +24,19 @@ jobs:
         run: BUILD_MODE=app npm run build -- --base=/login-client-vue/$BRANCH
         env:
           BRANCH: ${{ github.ref != 'refs/heads/main' && 'dev/' || '' }}
+      # Note: If the Deploy step is adjusted, the Retry copy below needs to be adjusted as well.
+      # (This is an unfortunate workaround, see #1.)
       - name: Deploy
+        continue-on-error: true
+        id: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          keep_files: true
+          destination_dir: ${{ github.ref != 'refs/heads/main' && 'dev' || '' }}
+      - name: Deploy Retry
+        if: steps.test.outcome == 'failure'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
