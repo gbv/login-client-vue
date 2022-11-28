@@ -14,7 +14,7 @@
       <slot
         name="before"
         :connected="login.connected"
-        :loggedIn="login.loggedIn"
+        :logged-in="login.loggedIn"
         :user="login.user" />
       <!-- login-client menu items -->
       <template v-if="!login.connected">
@@ -87,7 +87,7 @@
       <slot
         name="after"
         :connected="login.connected"
-        :loggedIn="login.loggedIn"
+        :logged-in="login.loggedIn"
         :user="login.user" />
     </div>
   </div>
