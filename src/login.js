@@ -1,5 +1,5 @@
 import { ref, computed, readonly, reactive } from "vue"
-import LoginClient from "gbv-login-client"
+import { LoginClient } from "gbv-login-client"
 
 const _connected = ref(false)
 export const connected = readonly(_connected)

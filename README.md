@@ -26,7 +26,7 @@ npm install
 npm run dev # for Vite dev server
 ```
 
-The dev server should then be running on http://localhost:3000. However, check the console output to see the actual port since it will increment it if it's not available.
+The dev server should then be running on http://localhost:5173. However, check the console output to see the actual port since it will increment it if it's not available.
 
 Ideally, you should have an instance of [Login Server](https://github.com/gbv/login-server) running on `localhost:3004`. The example served by the dev server will automatically use this instance.
 
