@@ -36,6 +36,7 @@
   ],
   "dependencies": {
     "gbv-login-client": "^0.3.1",
+    "jskos-tools": "^1.0.28",
     "vue": "^3.0.5"
   },
   "devDependencies": {

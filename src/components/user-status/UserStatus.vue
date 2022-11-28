@@ -6,7 +6,7 @@
         'user-status-disconnected': !login.connected,
       }"
       @click.prevent="login.connected && (login.loggedIn ? login.openBaseWindow() : login.openLoginWindow({ redirect }))">
-      {{ login.loggedIn ? login.user.name : "Sign in" }}
+      {{ login.loggedIn ? login.user.name : t("login") }}
       <span class="carret-down">&#9660;</span>
     </a>
     <div class="user-status-dropdown">
@@ -19,24 +19,24 @@
       <!-- login-client menu items -->
       <template v-if="!login.connected">
         <p>
-          Error:
+          {{ t("error") }}:
           <template v-if="login.lastError instanceof login.errors.NoInternetConnectionError">
-            Please check your internet connection.
+            {{ t("errorInternet") }}
           </template>
           <template v-else-if="login.lastError instanceof login.errors.ThirdPartyCookiesBlockedError">
-            Third-party cookies are blocked in your browser which means that a connection to the server can't be established.
+            {{ t("errorCookies") }}
           </template>
           <template v-else-if="login.lastError instanceof login.errors.ServerConnectionError">
-            There seems to be an issue with the server. Please try again later.
+            {{ t("errorConnection") }}
           </template>
           <template v-else>
-            Unknown error. Please try again later.
+            {{ t("errorOther") }}
           </template>
         </p>
       </template>
       <template v-else-if="login.loggedIn">
         <p>
-          Signed in as {{ login.user.name }}.
+          {{ t("loggedIn") }} {{ login.user.name }}.
         </p>
         <hr>
         <ul>
@@ -44,14 +44,14 @@
             <a
               href=""
               @click.prevent="login.openLogoutWindow()">
-              Sign out
+              {{ t("logout") }}
             </a>
           </li>
         </ul>
       </template>
       <template v-else>
         <p>
-          Sign in via
+          {{ t("login") }} {{ t("via") }}
         </p>
         <ul>
           <li
@@ -75,9 +75,9 @@
             <a
               href=""
               @click.prevent="login.openBaseWindow()">
-              Open Login Server
+              {{ t("open") }}
               <small style="font-weight: normal;">
-                <br>at {{ login.client.about.baseUrl }}
+                <br>{{ t("at") }} {{ login.client.about.baseUrl }}
               </small>
             </a>
           </li>
@@ -94,7 +94,41 @@
 </template>
 
 <script>
-import { defineComponent, inject } from "vue"
+import { defineComponent, inject, computed } from "vue"
+
+// Localization
+const locale = {
+  en: {
+    login: "Sign in",
+    loggedIn: "Signed in as",
+    logout: "Sign out",
+    open: "Open Login Server",
+    at: "at",
+    via: "via",
+    error: "Error",
+    errorInternet: "Please check your internet connection.",
+    errorCookies: "Third-party cookies are blocked in your browser which means that a connection to the server can't be established.",
+    errorConnection: "There seems to be an issue with the server. Please try again later.",
+    errorOther: "Unknown error. Please try again later.",
+  },
+  de: {
+    login: "Einloggen",
+    loggedIn: "Eingeloggt als",
+    logout: "Ausloggen",
+    open: "Öffne Login-Server",
+    at: "auf",
+    via: "via",
+    error: "Fehler",
+    errorInternet: "Bitte Internetverbindung prüfen.",
+    errorCookies: "Konnte keine Verbindung zum Server herstellen, da Drittanbietercookies vom Browser blockiert sind.",
+    errorConnection: "Es gibt einen Fehler mit dem Server. Bitte später noch einmal probieren.",
+    errorOther: "Unbekannter Fehler. Bitte später noch einmal probieren.",
+  },
+}
+// Determines current language from jskos.languagePreference and locale
+import jskos from "jskos-tools"
+const currentLanguage = computed(() => jskos.languagePreference.getLanguages().find(lang => locale[lang]) || "en")
+const t = (prop) => locale[currentLanguage.value][prop]
 
 export default defineComponent({
   name: "UserStatus",
@@ -107,6 +141,7 @@ export default defineComponent({
   setup() {
     return {
       login: inject("login"),
+      t,
     }
   },
 })
