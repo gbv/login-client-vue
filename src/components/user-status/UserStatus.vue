@@ -62,6 +62,7 @@
               @click.prevent="login.openLoginWindow({ id: provider.id, redirect })">
               <img
                 v-if="provider.image"
+                crossorigin=""
                 :src="provider.image">
               {{ provider.name }}
             </a>
