@@ -37,26 +37,26 @@
     "test"
   ],
   "dependencies": {
-    "gbv-login-client": "^1.0.3",
-    "jskos-tools": "^1.0.29",
-    "vue": "^3.2.45"
+    "gbv-login-client": "^2.0.1",
+    "jskos-tools": "^1.0.42",
+    "vue": "^3.5.10"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.0.0",
-    "@vue/compiler-sfc": "^3.2.45",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "@vue/compiler-sfc": "^3.5.10",
     "eslint": "~9.11",
     "eslint-config-gbv": "~2.1",
-    "lint-staged": "^13.1.0",
-    "mocha": "^10.2.0",
+    "lint-staged": "^15.2.10",
+    "mocha": "^10.7.3",
     "mocha-eslint": "^7.0.0",
     "pre-commit": "^1.2.2",
-    "vite": "^4.0.4",
+    "vite": "^5.4.8",
     "yesno": "^0.4.0"
   },
   "author": "Stefan Peters <stefan.peters@gbv.de>",
   "license": "MIT",
   "description": "Vue 3 wrapper for login-client",
   "engines": {
-    "node": ">=14.18.0"
+    "node": ">=18"
   }
 }

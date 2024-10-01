@@ -1,15 +1,15 @@
 import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
-const path = require("path")
-const pkg = require("./package.json")
+import path from "node:path"
+import fs from "node:fs/promises"
+const pkg = JSON.parse(await fs.readFile("./package.json", "utf8"))
+import { execSync } from "node:child_process"
 
 // Get short Git commit hash
-const commit = require("child_process")
-  .execSync("git rev-parse --short HEAD")
+const commit = execSync("git rev-parse --short HEAD")
   .toString().trim()
 // Get Git branch name
-const branch = require("child_process")
-  .execSync("git rev-parse --abbrev-ref HEAD")
+const branch = execSync("git rev-parse --abbrev-ref HEAD")
   .toString().trim()
 
 /**
