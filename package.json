@@ -58,5 +58,9 @@
   "description": "Vue 3 wrapper for login-client",
   "engines": {
     "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gbv/login-client-vue.git"
   }
 }
