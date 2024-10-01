@@ -5,7 +5,9 @@
     "dist",
     "src"
   ],
+  "type": "module",
   "main": "./src/index.js",
+  "module": "./src/index.js",
   "exports": {
     ".": "./src/index.js",
     "./login": "./src/login.js",
@@ -16,8 +18,8 @@
     "test": "mocha --recursive",
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint --ignore-path .gitignore --ext .js,.vue .",
-    "fix": "npm run lint -- --fix",
+    "lint": "eslint",
+    "fix": "eslint --fix",
     "lint-staged": "lint-staged",
     "yesno": "node -e \"const yesno = require('yesno'); yesno({ question: 'Are you sure you want to continue?' }).then(ok => process.exit(ok ? 0 : 1));\"",
     "release": "test $(git rev-parse --abbrev-ref HEAD) = dev && git pull && npm test && npm run build && npm version $SEMVER && npm run --silent yesno && (git push && git checkout main && git merge dev && git push --follow-tags && git checkout dev) || (git tag -d $(git describe --tags) && git reset --hard HEAD~1)",
@@ -42,9 +44,8 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/compiler-sfc": "^3.2.45",
-    "eslint": "^8.32.0",
-    "eslint-config-gbv": "^1.0.4",
-    "eslint-plugin-vue": "^9.9.0",
+    "eslint": "~9.11",
+    "eslint-config-gbv": "~2.1",
     "lint-staged": "^13.1.0",
     "mocha": "^10.2.0",
     "mocha-eslint": "^7.0.0",
