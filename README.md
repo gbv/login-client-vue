@@ -6,8 +6,6 @@
 
 > Vue 3 wrapper for [login-client](https://github.com/gbv/login-client).
 
-**Note: Still in development!**
-
 ## Table of Contents <!-- omit in toc -->
 - [Development](#development)
   - [Build](#build)
@@ -22,7 +20,7 @@
 ```bash
 git clone https://github.com/gbv/login-client-vue.git
 cd login-client-vue
-npm install
+npm ci
 npm run dev # for Vite dev server
 ```
 
@@ -34,9 +32,12 @@ Ideally, you should have an instance of [Login Server](https://github.com/gbv/lo
 All builds will used the destination folder `dist`. Note that the folder will be emptied before each build.
 
 ```bash
-npm run build # for Vite library build
-BUILD_MODE=app npm run build # for Vite app build
-BUILD_MODE=app npm run build -- --base=/base/ # for Vite app build with different base
+# for Vite library build
+npm run build
+# for Vite app build
+BUILD_MODE=app npm run build
+# for Vite app build with different base
+BUILD_MODE=app npm run build -- --base=/base/
 ```
 
 ## Usage
@@ -61,6 +62,9 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 const app = createApp(App)
+
+// Add stylesheet (always necessary for the UserStatus component, as of v1.0.0)
+import "gbv-login-client-vue/styles"
 
 // Add both
 import * as LoginClientVue from "gbv-login-client-vue"
