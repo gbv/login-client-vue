@@ -23,7 +23,11 @@ let build
 if (process.env.BUILD_MODE !== "app") {
   build = {
     lib: {
-      entry: path.resolve(__dirname, "src/index.js"),
+      entry: {
+        "gbv-login-client-vue": path.resolve(__dirname, "src/index.js"),
+        login: path.resolve(__dirname, "src/login.js"),
+        "user-status": path.resolve(__dirname, "src/components/user-status/index.js"),
+      },
       name: "LoginClientVue",
     },
     rollupOptions: {

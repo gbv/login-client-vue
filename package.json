@@ -1,17 +1,24 @@
 {
   "name": "gbv-login-client-vue",
   "version": "0.3.0",
-  "files": [
-    "dist",
-    "src"
-  ],
+  "files": ["dist"],
   "type": "module",
-  "main": "./src/index.js",
-  "module": "./src/index.js",
+  "main": "./dist/gbv-login-client-vue.cjs",
+  "module": "./dist/gbv-login-client-vue.js",
   "exports": {
-    ".": "./src/index.js",
-    "./login": "./src/login.js",
-    "./user-status": "./src/components/user-status/index.js"
+    ".": {
+      "import": "./dist/gbv-login-client-vue.js",
+      "require": "./dist/gbv-login-client-vue.cjs"
+    },
+    "./login": {
+      "import": "./dist/login.js",
+      "require": "./dist/login.cjs"
+    },
+    "./user-status": {
+      "import": "./dist/user-status.js",
+      "require": "./dist/user-status.cjs"
+    },
+    "./style": "./dist/style.css"
   },
   "sideEffects": false,
   "scripts": {
