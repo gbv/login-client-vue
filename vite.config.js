@@ -29,6 +29,7 @@ if (process.env.BUILD_MODE !== "app") {
         "user-status": path.resolve(__dirname, "src/components/user-status/index.js"),
       },
       name: "LoginClientVue",
+      cssFileName: "style",
     },
     rollupOptions: {
       external: ["vue", "gbv-login-client"],

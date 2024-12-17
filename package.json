@@ -47,19 +47,19 @@
   ],
   "dependencies": {
     "gbv-login-client": "^2.0.1",
-    "jskos-tools": "^1.0.42",
-    "vue": "^3.5.10"
+    "jskos-tools": "^1.0.43",
+    "vue": "^3.5.13"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.1.4",
-    "@vue/compiler-sfc": "^3.5.10",
-    "eslint": "~9.11",
-    "eslint-config-gbv": "~2.1",
-    "lint-staged": "^15.2.10",
-    "mocha": "^10.7.3",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/compiler-sfc": "^3.5.13",
+    "eslint": "~9.16",
+    "eslint-config-gbv": "~2.6",
+    "lint-staged": "^15.2.11",
+    "mocha": "^11.0.1",
     "mocha-eslint": "^7.0.0",
     "pre-commit": "^1.2.2",
-    "vite": "^5.4.8",
+    "vite": "^6.0.3",
     "yesno": "^0.4.0"
   },
   "author": "Stefan Peters <stefan.peters@gbv.de>",
